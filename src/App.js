@@ -4,16 +4,17 @@ import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import UpdateContact from "./component/UpdateContact";
 import Contact from "./component/Contact";
+import DisplayUser from "./component/DisplayUser";
 
 const baseURL = "https://jsonplaceholder.typicode.com/users";
 
 export default function App() {
   const [user, setUser] = React.useState([]);
-  const [inputs, setInputs] = useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
+  // const [inputs, setInputs] = useState({
+  //   name: "",
+  //   email: "",
+  //   phone: "",
+  // });
   useEffect(() => {
     axios.get(baseURL).then((response) => {
       setUser(response.data);
@@ -38,6 +39,11 @@ export default function App() {
         <Route
           path="/UpdateContact"
           element={<UpdateContact displayUser={displayUser} />}
+        />
+   
+      <Route
+          path="/DisplayUser"
+          element={<DisplayUser user={user} />}
         />
       </Routes>
     </div>

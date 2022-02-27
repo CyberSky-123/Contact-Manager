@@ -4,6 +4,13 @@ import { Accordion } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Contact = ({ user, deleteUser, displayUser }) => {
+
+  const getUser =(id, name, phone, email)=>{
+
+    console.log(id, name, phone,email)
+    
+    
+  }
   return (
     <div>
       <div>
@@ -25,7 +32,8 @@ const Contact = ({ user, deleteUser, displayUser }) => {
         <Accordion key={users.id}>
           <Accordion.Item eventKey="0">
             <Accordion.Header>{users.name} </Accordion.Header>{" "}
-              <NoteAddOutlined onClick={()=>displayUser()} />
+            <Link className="iconEdit" to= {`./DisplayUser?${users.id}`} >  <NoteAddOutlined onClick ={() => getUser(users.id, users.name, users.phone, users.email)} /></Link>
+             
             <Clear
               className="deleteIcon"
               onClick={() => deleteUser(users.id)}
