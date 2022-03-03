@@ -1,45 +1,13 @@
-import React, { useEffect, useState } from "react";
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import axios from "axios";
-import UpdateContact from "./component/UpdateContact";
-import Contact from "./component/Contact";
-
-const baseURL = "https://jsonplaceholder.typicode.com/users";
+import './App.css';
+import UpdateContact from './component/UpdateContact';
+import Contact from './component/Contact';
+import { Route, Routes } from 'react-router-dom';
 
 export default function App() {
-  const [user, setUser] = React.useState([]);
-  const [inputs, setInputs] = useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
-  useEffect(() => {
-    axios.get(baseURL).then((response) => {
-      setUser(response.data);
-      console.log(response.data);
-    });
-  }, []);
-
-  const deleteUser = (id) => {
-    const newTodos = user.filter((item) => item.id !== id);
-    setUser(newTodos);
-  };
-  const displayUser = (id) => {
-    setUser(console.log(id));
-  };
-  return (
-    <div>
-      <Routes>
-        <Route
-          path="/"
-          element={<Contact user={user} deleteUser={deleteUser} />}
-        />
-        <Route
-          path="/UpdateContact"
-          element={<UpdateContact displayUser={displayUser} />}
-        />
-      </Routes>
-    </div>
-  );
+	return (
+			<Routes>
+				<Route path='/' element={<Contact />} />
+				<Route path='/UpdateContact/:id' element={<UpdateContact />} />
+			</Routes>
+	);
 }
