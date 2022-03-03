@@ -7,17 +7,12 @@ import { getUsers } from './APIs';
 const Contact = () => {
 	const [ user, setUser ] = useState([]);
 
-
-	 //delete each user
-	 
 	const deleteUser = (id) => {
 		if (window.confirm('Are you sure you want to delete?')) {
 			const itemUser = user.filter((item) => item.id !== id);
 			setUser(itemUser);
 		}
 	};
-
-	//fetches all the users
 
 	useEffect(() => {
 		loadUsers();
